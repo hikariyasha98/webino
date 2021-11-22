@@ -79,7 +79,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:scheme="unilinks"
+                    android:scheme="http"
+                    android:scheme="https"
                     android:host="webino.id" />
             </intent-filter>
             <!-- Scheme+host+pathPrefix filter -->
@@ -88,8 +89,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:scheme="unilinks"
-                    android:host="host"
+                    android:scheme="http"
+                    android:scheme="https"
+                    android:host="webino.id"
                     android:pathPrefix="/path/subpath" />
             </intent-filter>
             <!-- Scheme-only filter -->
