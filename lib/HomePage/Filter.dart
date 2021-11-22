@@ -411,6 +411,7 @@ class _FilterState extends State<Filter> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                          color: Colors.green,
                           child: Column(
                             children: [
                               Padding(
@@ -501,6 +502,7 @@ class _FilterState extends State<Filter> {
                                 ),
                               ),
                               Container(
+                                color: Colors.yellow,
                                 child: Column(
                                   children: [
                                     TabBar(
