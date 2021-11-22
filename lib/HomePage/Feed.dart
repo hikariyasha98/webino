@@ -1773,21 +1773,28 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: AspectRatio(
-        aspectRatio: MediaQuery.of(context).size.width /
-            (MediaQuery.of(context).size.height / 2.2),
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                "assets/images/Frame 320.jpg",
+    return Builder(
+      builder: (context) {
+        return ListView(
+          padding: EdgeInsets.zero,
+          physics: NeverScrollableScrollPhysics(),
+          children: [
+            Container(
+              height: 374,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.green,
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/Frame 320.jpg",
+                  ),
+                  fit: BoxFit.fill,
+                ),
               ),
-              fit: BoxFit.fill,
             ),
-          ),
-        ),
-      ),
+          ],
+        );
+      },
     );
   }
 }

@@ -568,6 +568,7 @@ class _FilterState extends State<Filter> {
                                                 6,
                                             child: Text(
                                               "KATEGORI",
+                                              overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
                                         ),
@@ -1083,6 +1084,7 @@ class _FilterState extends State<Filter> {
                                   ),
                                   //waktu
                                   Container(
+                                    color: Colors.red,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -1090,126 +1092,145 @@ class _FilterState extends State<Filter> {
                                         Divider(
                                           thickness: 2,
                                         ),
-                                        Container(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height /
-                                              3,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "Tahun",
-                                              ),
-                                              Container(
-                                                // color: Colors.red,
-                                                height: 30,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                child: ListView.builder(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    itemCount: year.length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          left: 2.0,
-                                                          right: 6.0,
-                                                        ),
-                                                        child: MaterialButton(
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        50),
-                                                            side: BorderSide(
-                                                              color: yearBol[
-                                                                      index]
-                                                                  ? Color
-                                                                      .fromRGBO(
-                                                                      156,
-                                                                      223,
-                                                                      255,
-                                                                      1,
-                                                                    )
-                                                                  : Colors.grey
-                                                                      .withOpacity(
-                                                                          0.5),
-                                                            ),
-                                                          ),
-                                                          padding:
-                                                              EdgeInsets.zero,
-                                                          onPressed: () {
-                                                            if (yearBol[
-                                                                    index] ==
-                                                                false) {
-                                                              setState(() {
-                                                                yearSet.add(
-                                                                    year[
-                                                                        index]);
-                                                              });
-                                                            } else if (yearBol[
-                                                                    index] ==
-                                                                true) {
-                                                              setState(() {
-                                                                yearSet.remove(
-                                                                    year[
-                                                                        index]);
-                                                              });
-                                                            }
-                                                            setState(() {
-                                                              yearBol[index] =
-                                                                  !yearBol[
-                                                                      index];
-                                                            });
-                                                          },
-                                                          child: Container(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                              top: 7,
-                                                              bottom: 6,
-                                                              left: 22,
-                                                              right: 22,
-                                                            ),
-                                                            child: Text(
-                                                              "${year[index]}",
-                                                              style: TextStyle(
-                                                                color: yearBol[
-                                                                        index]
-                                                                    ? Color
-                                                                        .fromRGBO(
-                                                                        156,
-                                                                        223,
-                                                                        255,
-                                                                        1,
-                                                                      )
-                                                                    : Colors
-                                                                        .grey,
+                                        Expanded(
+                                          child: Container(
+                                            // height: MediaQuery.of(context)
+                                            //         .size
+                                            //         .height /
+                                            //     3,
+                                            child: ListView(
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Tahun",
+                                                    ),
+                                                    Container(
+                                                      // color: Colors.red,
+                                                      height: 30,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                              .size
+                                                              .width,
+                                                      child: ListView.builder(
+                                                          scrollDirection:
+                                                              Axis.horizontal,
+                                                          itemCount:
+                                                              year.length,
+                                                          itemBuilder:
+                                                              (BuildContext
+                                                                      context,
+                                                                  int index) {
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                left: 2.0,
+                                                                right: 6.0,
                                                               ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }),
-                                              ),
-                                              Text("Bulan"),
-                                              Wrap(
-                                                spacing:
-                                                    8.0, // gap between adjacent chips
-                                                // runSpacing:
-                                                //     4.0, // gap between lines
-                                                children: _generateChildren(12),
-                                              )
-                                            ],
+                                                              child:
+                                                                  MaterialButton(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                  side:
+                                                                      BorderSide(
+                                                                    color: yearBol[
+                                                                            index]
+                                                                        ? Color
+                                                                            .fromRGBO(
+                                                                            156,
+                                                                            223,
+                                                                            255,
+                                                                            1,
+                                                                          )
+                                                                        : Colors
+                                                                            .grey
+                                                                            .withOpacity(0.5),
+                                                                  ),
+                                                                ),
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .zero,
+                                                                onPressed: () {
+                                                                  if (yearBol[
+                                                                          index] ==
+                                                                      false) {
+                                                                    setState(
+                                                                        () {
+                                                                      yearSet.add(
+                                                                          year[
+                                                                              index]);
+                                                                    });
+                                                                  } else if (yearBol[
+                                                                          index] ==
+                                                                      true) {
+                                                                    setState(
+                                                                        () {
+                                                                      yearSet.remove(
+                                                                          year[
+                                                                              index]);
+                                                                    });
+                                                                  }
+                                                                  setState(() {
+                                                                    yearBol[index] =
+                                                                        !yearBol[
+                                                                            index];
+                                                                  });
+                                                                },
+                                                                child:
+                                                                    Container(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                    top: 7,
+                                                                    bottom: 6,
+                                                                    left: 22,
+                                                                    right: 22,
+                                                                  ),
+                                                                  child: Text(
+                                                                    "${year[index]}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: yearBol[
+                                                                              index]
+                                                                          ? Color
+                                                                              .fromRGBO(
+                                                                              156,
+                                                                              223,
+                                                                              255,
+                                                                              1,
+                                                                            )
+                                                                          : Colors
+                                                                              .grey,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text("Bulan"),
+                                                Wrap(
+                                                  spacing:
+                                                      8.0, // gap between adjacent chips
+                                                  // runSpacing:
+                                                  //     4.0, // gap between lines
+                                                  children:
+                                                      _generateChildren(12),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -1598,6 +1619,7 @@ class _FilterState extends State<Filter> {
                   right: 3.0,
                 ),
                 child: MaterialButton(
+                  minWidth: 80,
                   color: Color.fromRGBO(
                     156,
                     223,
