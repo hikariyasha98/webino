@@ -1693,7 +1693,8 @@ class _FeedPageState extends State<FeedPage> {
     String waktu = index['waktu'].toString();
     String jenispembayaran = index['jenis_pembayaran'].toString();
     String slug = index['slug'].toString();
-
+    print(MediaQuery.of(context).size.width / 16);
+    print(MediaQuery.of(context).size.height / 9);
     return Padding(
       padding: EdgeInsets.only(
         top: 2,
@@ -1719,6 +1720,7 @@ class _FeedPageState extends State<FeedPage> {
             // borderRadius:
             //     BorderRadius.circular(
             //         20),
+            //   color: Colors.blue,
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(color: Colors.black.withOpacity(0.2)),
@@ -1733,6 +1735,7 @@ class _FeedPageState extends State<FeedPage> {
                 AspectRatio(
                   aspectRatio: 15 / 9,
                   child: Container(
+                    color: Colors.green,
                     //height: 115,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 0, right: 0),
@@ -1767,6 +1770,7 @@ class _FeedPageState extends State<FeedPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
+                            // color: Colors.red,
                             child: Text(
                               name.isNotEmpty ? name : "Coming Soon",
                               maxLines: 2,
@@ -1778,11 +1782,12 @@ class _FeedPageState extends State<FeedPage> {
                               ),
                             ),
                           ),
-                          Container(
-                            height: 10,
-                          ),
+                          // Container(
+                          //   height: 10,
+                          // ),
                           Expanded(
                             child: Container(
+                              //color: Colors.yellow,
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -1793,11 +1798,13 @@ class _FeedPageState extends State<FeedPage> {
                                       //   height: 5,
                                       ),
                                   Container(
+                                    //    color: Colors.red,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Container(
+                                          //  color: Colors.blue,
                                           child: Text(
                                             tanggal.isNotEmpty
                                                 ? tanggal
@@ -1809,6 +1816,7 @@ class _FeedPageState extends State<FeedPage> {
                                           ),
                                         ),
                                         Container(
+                                          //            color: Colors.green,
                                           child: Text(
                                             waktu.isNotEmpty
                                                 ? waktu
@@ -1820,6 +1828,7 @@ class _FeedPageState extends State<FeedPage> {
                                           ),
                                         ),
                                         Container(
+                                          //          color: Colors.grey,
                                           child: Text(
                                             status.isNotEmpty
                                                 ? ((status == "Both")
@@ -1836,6 +1845,7 @@ class _FeedPageState extends State<FeedPage> {
                                     ),
                                   ),
                                   Container(
+//                                    color: Colors.green,
                                     child: Row(
                                       children: [
                                         Container(),
@@ -1863,9 +1873,9 @@ class _FeedPageState extends State<FeedPage> {
                               ),
                             ),
                           ),
-                          Container(
-                            height: 10,
-                          ),
+                          // Container(
+                          //   height: 10,
+                          // ),
                         ],
                       ),
                     ),
