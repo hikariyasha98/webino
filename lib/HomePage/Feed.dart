@@ -39,10 +39,10 @@ class _FeedPageState extends State<FeedPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final storage = new FlutterSecureStorage();
   //unilink -- start -- //
-  Uri? _initialUri;
-  Uri? _latestUri;
-  Object? _err;
-  StreamSubscription? _sub;
+  // Uri? _initialUri;
+  // Uri? _latestUri;
+  // Object? _err;
+//  StreamSubscription? _sub;
   //unilink -- end --//
 
   // final _random = new Random();
@@ -82,8 +82,8 @@ class _FeedPageState extends State<FeedPage> {
     this.fetchSlider();
     this.fetchProfile();
     this.fetchSepcialEvent();
-    _handleIncomingLinks();
-    _handleInitialUri();
+    //  _handleIncomingLinks();
+    // _handleInitialUri();
     if (widget.fromPage == "main") listenNotifications();
   }
 
@@ -424,85 +424,85 @@ class _FeedPageState extends State<FeedPage> {
     return shouldPop ?? false;
   }
 
-  void _handleIncomingLinks() {
-    // if (!kIsWeb) {
-    // It will handle app links while the app is already started - be it in
-    // the foreground or in the background.
-    _sub = uriLinkStream.listen((Uri? uri) {
-      if (!mounted) return;
-      print('got uri: $uri');
-      setState(() {
-        _latestUri = uri;
-        _err = null;
-      });
-    }, onError: (Object err) {
-      if (!mounted) return;
-      print('got err: $err');
-      setState(() {
-        _latestUri = null;
-        if (err is FormatException) {
-          _err = err;
-        } else {
-          _err = null;
-        }
-      });
-    });
-    //  }
-  }
+  // void _handleIncomingLinks() {
+  //   // if (!kIsWeb) {
+  //   // It will handle app links while the app is already started - be it in
+  //   // the foreground or in the background.
+  //   _sub = uriLinkStream.listen((Uri? uri) {
+  //     if (!mounted) return;
+  //     print('got uri: $uri');
+  //     setState(() {
+  //       _latestUri = uri;
+  //       _err = null;
+  //     });
+  //   }, onError: (Object err) {
+  //     if (!mounted) return;
+  //     print('got err: $err');
+  //     setState(() {
+  //       _latestUri = null;
+  //       if (err is FormatException) {
+  //         _err = err;
+  //       } else {
+  //         _err = null;
+  //       }
+  //     });
+  //   });
+  //   //  }
+  // }
 
-  /// Handle the initial Uri - the one the app was started with
-  ///
-  /// **ATTENTION**: `getInitialLink`/`getInitialUri` should be handled
-  /// ONLY ONCE in your app's lifetime, since it is not meant to change
-  /// throughout your app's life.
-  ///
-  /// We handle all exceptions, since it is called from initState.
-  Future<void> _handleInitialUri() async {
-    // In this example app this is an almost useless guard, but it is here to
-    // show we are not going to call getInitialUri multiple times, even if this
-    // was a weidget that will be disposed of (ex. a navigation route change).
-    if (!_initialUriIsHandled) {
-      _initialUriIsHandled = true;
-      _showSnackBar('_handleInitialUri called');
-      try {
-        final uri = await getInitialUri();
-        if (uri == null) {
-          _showSnackBar('no initial uri');
-        } else {
-          _showSnackBar('got initial uri: $uri');
-        }
-        if (!mounted) return;
-        setState(() => _initialUri = uri);
-      } on PlatformException {
-        // Platform messages may fail but we ignore the exception
-        _showSnackBar('falied to get initial uri');
-      } on FormatException catch (err) {
-        if (!mounted) return;
-        _showSnackBar('malformed initial uri');
-        setState(() => _err = err);
-      }
-    }
-  }
+  // /// Handle the initial Uri - the one the app was started with
+  // ///
+  // /// **ATTENTION**: `getInitialLink`/`getInitialUri` should be handled
+  // /// ONLY ONCE in your app's lifetime, since it is not meant to change
+  // /// throughout your app's life.
+  // ///
+  // /// We handle all exceptions, since it is called from initState.
+  // Future<void> _handleInitialUri() async {
+  //   // In this example app this is an almost useless guard, but it is here to
+  //   // show we are not going to call getInitialUri multiple times, even if this
+  //   // was a weidget that will be disposed of (ex. a navigation route change).
+  //   if (!_initialUriIsHandled) {
+  //     _initialUriIsHandled = true;
+  //     _showSnackBar('_handleInitialUri called');
+  //     try {
+  //       final uri = await getInitialUri();
+  //       if (uri == null) {
+  //         _showSnackBar('no initial uri');
+  //       } else {
+  //         _showSnackBar('got initial uri: $uri');
+  //       }
+  //       if (!mounted) return;
+  //       setState(() => _initialUri = uri);
+  //     } on PlatformException {
+  //       // Platform messages may fail but we ignore the exception
+  //       _showSnackBar('falied to get initial uri');
+  //     } on FormatException catch (err) {
+  //       if (!mounted) return;
+  //       _showSnackBar('malformed initial uri');
+  //       setState(() => _err = err);
+  //     }
+  //   }
+  // }
 
-  Future<void> _printAndCopy(String cmd) async {
-    print(cmd);
+  // Future<void> _printAndCopy(String cmd) async {
+  //   print(cmd);
 
-    await Clipboard.setData(ClipboardData(text: cmd));
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Copied to Clipboard')),
-    );
-  }
+  //   await Clipboard.setData(ClipboardData(text: cmd));
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     const SnackBar(content: Text('Copied to Clipboard')),
+  //   );
+  // }
 
-  void _showSnackBar(String msg) {
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      final context = _scaffoldKey.currentContext;
-      if (context != null) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(msg),
-        ));
-      }
-    });
-  }
+  // void _showSnackBar(String msg) {
+  //   WidgetsBinding.instance?.addPostFrameCallback((_) {
+  //     final context = _scaffoldKey.currentContext;
+  //     if (context != null) {
+  //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //         content: Text(msg),
+  //       ));
+  //     }
+  //   });
+  // }
 
   _launchUrl(url) async {
     if (await canLaunch(url))
@@ -545,19 +545,19 @@ class _FeedPageState extends State<FeedPage> {
                   Column(
                     children: [
                       appBar(context),
-                      GestureDetector(
-                        onTap: () async {
-                          print("lets");
-                          var url =
-                              "https://webino.id/event/bangun-startup-impact-atau-revenue-dulu";
-                          await _launchUrl(url);
-                        },
-                        child: Container(
-                          child: Text(
-                            "Lesgo",
-                          ),
-                        ),
-                      ),
+                      // GestureDetector(
+                      //   onTap: () async {
+                      //     print("lets");
+                      //     var url =
+                      //         "https://webino.id/event/bangun-startup-impact-atau-revenue-dulu";
+                      //     await _launchUrl(url);
+                      //   },
+                      //   child: Container(
+                      //     child: Text(
+                      //       "Lesgo",
+                      //     ),
+                      //   ),
+                      // ),
                       // Padding(
                       //   padding: const EdgeInsets.only(top: 0.0),
                       //   child: Container(

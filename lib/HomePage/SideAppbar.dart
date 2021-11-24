@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:webino/API/SetApi.dart';
 import 'package:webino/API/notificationAPI.dart';
 import 'package:webino/HomePage/Component/Kalender.dart';
 import 'package:webino/HomePage/Feed.dart';
@@ -242,6 +243,7 @@ class _SideAppbarState extends State<SideAppbar> {
                         ),
                       ),
                       onPressed: () async {
+                        //  await logout();
                         await widget.storage.deleteAll();
                         await storage.write(
                             key: "token", value: ""); // .read(key: 'token');

@@ -13,8 +13,6 @@ import 'package:async/async.dart';
 
 import 'Models/ProdukModels.dart';
 
-final storage = new FlutterSecureStorage();
-
 Future feedprodukPlus(int a) async {
   String b = a.toString();
   var url2 = Uri.parse("https://webino.id/api/products?page=$b");
@@ -206,12 +204,31 @@ Future userPorfile(String token) async {
   return userData;
 }
 
+Future logout() async {
+  final storage = new FlutterSecureStorage();
+  var token = await storage.read(key: 'token');
+  // print(token);
+  var url = Uri.parse("https://webino.id/api/logout");
+
+  var response = await http.post(
+    url,
+    headers: {
+      'Authorization': 'Bearer $token',
+      "Accept": "Application/json",
+    },
+  );
+  var userData = jsonDecode(response.body);
+  //print(userData);
+  return userData;
+}
+
 Future setReminder(
   int id,
   String a,
   String b,
   String c,
 ) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   var url = Uri.parse("https://webino.id/api/add/reminder/$id");
@@ -232,6 +249,7 @@ Future setReminder(
 Future deleteReminder(
   int id,
 ) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
   var url = Uri.parse("https://webino.id/api/destroy/reminder/$id");
   var response = await http.delete(
@@ -247,6 +265,7 @@ Future deleteReminder(
 }
 
 Future checkreminder() async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   var url = Uri.parse("https://webino.id/api/reminder?page=1");
@@ -264,6 +283,7 @@ Future checkreminder() async {
 }
 
 Future checkreminderplus(int i) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   var url = Uri.parse("https://webino.id/api/reminder?page=$i");
@@ -286,6 +306,7 @@ Future updateReminder(
   String b,
   String c,
 ) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   var url = Uri.parse("https://webino.id/api/add/reminder/update/$id");
@@ -335,6 +356,7 @@ Future uploadImage(
 ) async {
   //var formData1 = await FormData1();
   //Response response;
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   var postUri = Uri.parse('https://webino.id/api/update/foto_profile');
@@ -366,6 +388,7 @@ Future gantiPassword(
   String newPass,
   String confirm,
 ) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
   Map<String, dynamic> body = {
     'current_password': old,
@@ -390,6 +413,7 @@ Future gantiPassword(
 }
 
 Future userUpdate(String userName) async {
+  final storage = new FlutterSecureStorage();
   var token = await storage.read(key: 'token');
 
   Map<String, dynamic> body = {
