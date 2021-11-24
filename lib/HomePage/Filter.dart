@@ -373,31 +373,37 @@ class _FilterState extends State<Filter> {
 
   Widget build(BuildContext context) {
     return GestureDetector(
+      excludeFromSemantics: true,
       onTap: unfocus,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Container(
-          child: ListView(
-            primary: false,
+          color: Colors.transparent,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  height: (MediaQuery.of(context).size.height * 0.13),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                  ),
                 ),
               ),
               Dialog(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.white,
                 insetPadding: EdgeInsets.zero,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15))),
                 child: Container(
                   width: double.infinity,
                   height: (MediaQuery.of(context).size.height * 0.76),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
+                    color: Colors.transparent,
                   ),
                   padding: EdgeInsets.only(
                     top: 10,
@@ -502,7 +508,7 @@ class _FilterState extends State<Filter> {
                                 ),
                               ),
                               Container(
-                                //   color: Colors.yellow,
+                                // color: Colors.yellow,
                                 child: Column(
                                   children: [
                                     TabBar(
@@ -615,7 +621,7 @@ class _FilterState extends State<Filter> {
                         Expanded(
                           child: Padding(
                             padding:
-                                const EdgeInsets.only(top: 20.0, bottom: 20),
+                                const EdgeInsets.only(top: 10.0, bottom: 20),
                             child: Container(
                               child: TabBarView(
                                 children: [
@@ -804,309 +810,258 @@ class _FilterState extends State<Filter> {
                                     ),
                                   ),
                                   Container(
-                                    color: Colors.green,
-                                    child: ListView(
-                                      shrinkWrap: true,
+                                    child: Column(
+                                      //   crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          height: 200,
-                                          child: Column(
-                                            //   crossAxisAlignment: CrossAxisAlignment.start,
+                                        Divider(
+                                          thickness: 2,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 8.0,
+                                            top: 12,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Divider(
-                                                thickness: 2,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                  left: 8.0,
-                                                  top: 12,
+                                              Text(
+                                                "Lokasi",
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black
+                                                      .withOpacity(status ==
+                                                                  "Offline" ||
+                                                              status == "Both"
+                                                          ? 1
+                                                          : 0.1),
                                                 ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: status == "Offline" ||
+                                                        status == "Both"
+                                                    ? () {
+                                                        List a = kota;
+
+                                                        if (a.length !=
+                                                            lksSet.length) {
+                                                          a.forEach((element) {
+                                                            var city = element[
+                                                                'city_name'];
+                                                            var type =
+                                                                element['type'];
+                                                            var nameCall = type ==
+                                                                    'Kabupaten'
+                                                                ? "Kab. $city"
+                                                                : '$city';
+
+                                                            if (!lksSet
+                                                                .contains(
+                                                                    nameCall)) {
+                                                              lksSet.add(
+                                                                  nameCall);
+                                                            }
+                                                          });
+                                                          setState(() {
+                                                            lksSet = lksSet;
+                                                          });
+                                                        } else {
+                                                          lksSet.clear();
+                                                          setState(() {
+                                                            lksSet = lksSet;
+                                                          });
+                                                        }
+                                                      }
+                                                    : () {},
+                                                child: Container(
+                                                  child: Text(
+                                                    "Select All",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Color.fromRGBO(
+                                                          105,
+                                                          191,
+                                                          233,
+                                                          status == "Offline" ||
+                                                                  status ==
+                                                                      "Both"
+                                                              ? 1
+                                                              : 0.5),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        status == "Offline" || status == "Both"
+                                            ? Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10.0),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      "Lokasi",
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.black
-                                                            .withOpacity(status ==
-                                                                        "Offline" ||
-                                                                    status ==
-                                                                        "Both"
-                                                                ? 1
-                                                                : 0.1),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        border: Border.all(
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    0.2)),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                      ),
+                                                      height: 30,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width /
+                                                              1.5,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(
+                                                          left: 12.0,
+                                                        ),
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(
+                                                              MyFlutterApp
+                                                                  .search,
+                                                              size: 20,
+                                                              color:
+                                                                  Colors.grey,
+                                                            ),
+                                                            Container(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width /
+                                                                  1.9,
+                                                              child: TextField(
+                                                                onTap:
+                                                                    _handleSearchLKSStart,
+                                                                controller:
+                                                                    _lksController,
+                                                                onChanged:
+                                                                    searchOperationLKS,
+                                                                decoration:
+                                                                    InputDecoration
+                                                                        .collapsed(
+                                                                  hintText:
+                                                                      "Lokasi",
+                                                                  hintStyle:
+                                                                      TextStyle(
+                                                                          fontSize:
+                                                                              15,
+
+                                                                          // height: 0.5,
+                                                                          color:
+                                                                              Colors.grey),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                    GestureDetector(
-                                                      onTap: status ==
-                                                                  "Offline" ||
-                                                              status == "Both"
-                                                          ? () {
-                                                              List a = kota;
-
-                                                              if (a.length !=
-                                                                  lksSet
-                                                                      .length) {
-                                                                a.forEach(
-                                                                    (element) {
-                                                                  var city =
-                                                                      element[
-                                                                          'city_name'];
-                                                                  var type =
-                                                                      element[
-                                                                          'type'];
-                                                                  var nameCall = type ==
-                                                                          'Kabupaten'
-                                                                      ? "Kab. $city"
-                                                                      : '$city';
-
-                                                                  if (!lksSet
-                                                                      .contains(
-                                                                          nameCall)) {
-                                                                    lksSet.add(
-                                                                        nameCall);
-                                                                  }
-                                                                });
-                                                                setState(() {
-                                                                  lksSet =
-                                                                      lksSet;
-                                                                });
-                                                              } else {
-                                                                lksSet.clear();
-                                                                setState(() {
-                                                                  lksSet =
-                                                                      lksSet;
-                                                                });
-                                                              }
-
-                                                              // if (pvsBol
-                                                              //     .contains(false)) {
-                                                              //   pvsBol.forEachIndexed(
-                                                              //       (index, element) {
-                                                              //     setState(() {
-                                                              //       pvsBol[index] =
-                                                              //           true;
-                                                              //     });
-                                                              //   });
-
-                                                              //   a.forEachIndexed(
-                                                              //       (index, element) {
-                                                              //     if (!lksSet.contains(
-                                                              //         element[
-                                                              //             'city_name'])) {
-                                                              //       lksSet.add(element[
-                                                              //           'city_name']);
-                                                              //     }
-                                                              //   });
-                                                              //   lksSet
-                                                              //       .toSet()
-                                                              //       .toList();
-                                                              // } else if (pvsBol
-                                                              //     .contains(true)) {
-                                                              //   pvsBol.forEachIndexed(
-                                                              //       (index, element) {
-                                                              //     setState(() {
-                                                              //       pvsBol[index] =
-                                                              //           false;
-                                                              //     });
-                                                              //     lksSet.clear();
-                                                              //   });
-                                                              // }
-                                                            }
-                                                          : () {},
-                                                      child: Container(
-                                                        child: Text(
-                                                          "Select All",
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Color.fromRGBO(
-                                                                105,
-                                                                191,
-                                                                233,
-                                                                status == "Offline" ||
-                                                                        status ==
-                                                                            "Both"
-                                                                    ? 1
-                                                                    : 0.5),
-                                                          ),
+                                                    MaterialButton(
+                                                      height: 30,
+                                                      minWidth: 64,
+                                                      color: Color.fromRGBO(
+                                                        156,
+                                                        223,
+                                                        255,
+                                                        1,
+                                                      ),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(55),
+                                                        side: BorderSide(
+                                                          color: Color.fromRGBO(
+                                                            156,
+                                                            223,
+                                                            255,
+                                                            1,
+                                                          ).withOpacity(0.5),
+                                                        ),
+                                                      ),
+                                                      padding: EdgeInsets.zero,
+                                                      onPressed: () {},
+                                                      child: Text(
+                                                        "Search",
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Colors.white,
                                                         ),
                                                       ),
                                                     )
                                                   ],
                                                 ),
-                                              ),
-                                              status == "Offline" ||
-                                                      status == "Both"
-                                                  ? Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 10.0),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              border: Border.all(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .withOpacity(
-                                                                          0.2)),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50),
-                                                            ),
-                                                            height: 30,
-                                                            width: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width /
-                                                                1.5,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .only(
-                                                                left: 12.0,
-                                                              ),
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(
-                                                                    MyFlutterApp
-                                                                        .search,
-                                                                    size: 20,
-                                                                    color: Colors
-                                                                        .grey,
-                                                                  ),
-                                                                  Container(
-                                                                    width: MediaQuery.of(context)
-                                                                            .size
-                                                                            .width /
-                                                                        1.9,
-                                                                    child:
-                                                                        TextField(
-                                                                      onTap:
-                                                                          _handleSearchLKSStart,
-                                                                      controller:
-                                                                          _lksController,
-                                                                      onChanged:
-                                                                          searchOperationLKS,
-                                                                      decoration:
-                                                                          InputDecoration
-                                                                              .collapsed(
-                                                                        hintText:
-                                                                            "Lokasi",
-                                                                        hintStyle: TextStyle(
-                                                                            fontSize: 15,
-
-                                                                            // height: 0.5,
-                                                                            color: Colors.grey),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          MaterialButton(
-                                                            height: 30,
-                                                            minWidth: 64,
-                                                            color:
-                                                                Color.fromRGBO(
-                                                              156,
-                                                              223,
-                                                              255,
-                                                              1,
-                                                            ),
-                                                            shape:
-                                                                RoundedRectangleBorder(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          55),
-                                                              side: BorderSide(
-                                                                color: Color
-                                                                    .fromRGBO(
-                                                                  156,
-                                                                  223,
-                                                                  255,
-                                                                  1,
-                                                                ).withOpacity(
-                                                                    0.5),
-                                                              ),
-                                                            ),
-                                                            padding:
-                                                                EdgeInsets.zero,
-                                                            onPressed: () {},
-                                                            child: Text(
-                                                              "Search",
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Colors
-                                                                    .white,
-                                                              ),
-                                                            ),
-                                                          )
-                                                        ],
+                                              )
+                                            : Container(),
+                                        status == "Offline" || status == "Both"
+                                            ? Expanded(
+                                                child: loadingLKS
+                                                    ? Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      )
+                                                    : Container(
+                                                        color: Colors.yellow,
+                                                        child: lkssearchresult
+                                                                        .length !=
+                                                                    0 ||
+                                                                _lksController.text
+                                                                    .isNotEmpty
+                                                            ? ListView.builder(
+                                                                physics:
+                                                                    ClampingScrollPhysics(),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount:
+                                                                    lkssearchresult
+                                                                        .length,
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int
+                                                                            index) {
+                                                                  return lksLayout(
+                                                                    lkssearchresult[
+                                                                        index],
+                                                                    index,
+                                                                    true,
+                                                                  );
+                                                                })
+                                                            : ListView.builder(
+                                                                physics:
+                                                                    ClampingScrollPhysics(),
+                                                                shrinkWrap:
+                                                                    true,
+                                                                itemCount:
+                                                                    kota.length,
+                                                                itemBuilder:
+                                                                    (BuildContext
+                                                                            context,
+                                                                        int index) {
+                                                                  //   print(index);
+                                                                  return lksLayout(
+                                                                    kota[index],
+                                                                    index,
+                                                                    false,
+                                                                  );
+                                                                }),
                                                       ),
-                                                    )
-                                                  : Container(),
-                                              status == "Offline" ||
-                                                      status == "Both"
-                                                  ? Expanded(
-                                                      child: loadingLKS
-                                                          ? Center(
-                                                              child:
-                                                                  CircularProgressIndicator(),
-                                                            )
-                                                          : Container(
-                                                              child: lkssearchresult
-                                                                              .length !=
-                                                                          0 ||
-                                                                      _lksController
-                                                                          .text
-                                                                          .isNotEmpty
-                                                                  ? ListView
-                                                                      .builder(
-                                                                          itemCount: lkssearchresult
-                                                                              .length,
-                                                                          itemBuilder: (BuildContext context,
-                                                                              int
-                                                                                  index) {
-                                                                            return lksLayout(
-                                                                              lkssearchresult[index],
-                                                                              index,
-                                                                              true,
-                                                                            );
-                                                                          })
-                                                                  : ListView
-                                                                      .builder(
-                                                                          itemCount: kota
-                                                                              .length,
-                                                                          itemBuilder:
-                                                                              (BuildContext context, int index) {
-                                                                            //   print(index);
-                                                                            return lksLayout(
-                                                                              kota[index],
-                                                                              index,
-                                                                              false,
-                                                                            );
-                                                                          }),
-                                                            ),
-                                                    )
-                                                  : Container(),
-                                            ],
-                                          ),
-                                        ),
+                                              )
+                                            : Container(),
                                       ],
                                     ),
                                   ),
@@ -1900,7 +1855,7 @@ class _FilterState extends State<Filter> {
         }
       },
       child: Container(
-        color: Colors.white,
+        color: Colors.transparent,
         child: Column(
           children: [
             ListTile(

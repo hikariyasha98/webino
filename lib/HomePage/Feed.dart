@@ -504,13 +504,13 @@ class _FeedPageState extends State<FeedPage> {
   //   });
   // }
 
-  _launchUrl(url) async {
-    if (await canLaunch(url))
-      await launch(url);
-    else
-      // can't launch url, there is some error
-      throw "Could not launch $url";
-  }
+  // _launchUrl(url) async {
+  //   if (await canLaunch(url))
+  //     await launch(url);
+  //   else
+  //     // can't launch url, there is some error
+  //     throw "Could not launch $url";
+  // }
 
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -835,8 +835,9 @@ class _FeedPageState extends State<FeedPage> {
                             behavior: MyBehavior(),
                             child: ListView(
                               padding: EdgeInsets.only(
-                                  bottom: ((MediaQuery.of(context).size.height *
-                                      0.1))),
+                                bottom:
+                                    (MediaQuery.of(context).size.height * 0.1),
+                              ),
                               controller: scrollController,
                               shrinkWrap: true,
                               children: [
