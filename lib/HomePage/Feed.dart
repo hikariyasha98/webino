@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:uni_links/uni_links.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webino/API/SetApi.dart';
 import 'package:webino/API/notificationAPI.dart';
 import 'package:webino/HomePage/Detail.dart';
@@ -43,6 +44,7 @@ class _FeedPageState extends State<FeedPage> {
   Object? _err;
   StreamSubscription? _sub;
   //unilink -- end --//
+
   // final _random = new Random();
   ScrollController scrollController = new ScrollController();
 
@@ -465,18 +467,18 @@ class _FeedPageState extends State<FeedPage> {
       try {
         final uri = await getInitialUri();
         if (uri == null) {
-          print('no initial uri');
+          _showSnackBar('no initial uri');
         } else {
-          print('got initial uri: $uri');
+          _showSnackBar('got initial uri: $uri');
         }
         if (!mounted) return;
         setState(() => _initialUri = uri);
       } on PlatformException {
         // Platform messages may fail but we ignore the exception
-        print('falied to get initial uri');
+        _showSnackBar('falied to get initial uri');
       } on FormatException catch (err) {
         if (!mounted) return;
-        print('malformed initial uri');
+        _showSnackBar('malformed initial uri');
         setState(() => _err = err);
       }
     }
@@ -500,6 +502,14 @@ class _FeedPageState extends State<FeedPage> {
         ));
       }
     });
+  }
+
+  _launchUrl(url) async {
+    if (await canLaunch(url))
+      await launch(url);
+    else
+      // can't launch url, there is some error
+      throw "Could not launch $url";
   }
 
   Widget build(BuildContext context) {
@@ -535,6 +545,19 @@ class _FeedPageState extends State<FeedPage> {
                   Column(
                     children: [
                       appBar(context),
+                      GestureDetector(
+                        onTap: () async {
+                          print("lets");
+                          var url =
+                              "https://webino.id/event/bangun-startup-impact-atau-revenue-dulu";
+                          await _launchUrl(url);
+                        },
+                        child: Container(
+                          child: Text(
+                            "Lesgo",
+                          ),
+                        ),
+                      ),
                       // Padding(
                       //   padding: const EdgeInsets.only(top: 0.0),
                       //   child: Container(
