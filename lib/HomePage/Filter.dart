@@ -411,7 +411,7 @@ class _FilterState extends State<Filter> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          color: Colors.green,
+                          //      color: Colors.green,
                           child: Column(
                             children: [
                               Padding(
@@ -502,7 +502,7 @@ class _FilterState extends State<Filter> {
                                 ),
                               ),
                               Container(
-                                color: Colors.yellow,
+                                //   color: Colors.yellow,
                                 child: Column(
                                   children: [
                                     TabBar(
@@ -514,11 +514,14 @@ class _FilterState extends State<Filter> {
                                         left: 2,
                                         right: 2,
                                       ),
-                                      indicatorPadding:
-                                          EdgeInsets.only(left: 30, right: 30),
+                                      // indicatorPadding: EdgeInsets.only(
+                                      //   // left: 30,
+                                      //   // right: 30,
+                                      //   top: 40,
+                                      // ),
                                       indicatorColor:
                                           Color.fromRGBO(105, 191, 233, 1),
-                                      indicatorSize: TabBarIndicatorSize.tab,
+                                      indicatorSize: TabBarIndicatorSize.label,
                                       labelStyle: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w700,
@@ -534,6 +537,9 @@ class _FilterState extends State<Filter> {
                                       tabs: [
                                         Tab(
                                           child: Container(
+                                            // height: 1000,
+                                            // padding: EdgeInsets.only(
+                                            //     top: 100, bottom: 100),
                                             //   color: Colors.red,
                                             alignment: Alignment.center,
                                             width: MediaQuery.of(context)
@@ -798,284 +804,309 @@ class _FilterState extends State<Filter> {
                                     ),
                                   ),
                                   Container(
-                                    child: Column(
-                                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                                    color: Colors.green,
+                                    child: ListView(
+                                      shrinkWrap: true,
                                       children: [
-                                        Divider(
-                                          thickness: 2,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 8.0,
-                                            top: 12,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                        Container(
+                                          height: 200,
+                                          child: Column(
+                                            //   crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(
-                                                "Lokasi",
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.black
-                                                      .withOpacity(status ==
-                                                                  "Offline" ||
-                                                              status == "Both"
-                                                          ? 1
-                                                          : 0.1),
-                                                ),
+                                              Divider(
+                                                thickness: 2,
                                               ),
-                                              GestureDetector(
-                                                onTap: status == "Offline" ||
-                                                        status == "Both"
-                                                    ? () {
-                                                        List a = kota;
-
-                                                        if (a.length !=
-                                                            lksSet.length) {
-                                                          a.forEach((element) {
-                                                            var city = element[
-                                                                'city_name'];
-                                                            var type =
-                                                                element['type'];
-                                                            var nameCall = type ==
-                                                                    'Kabupaten'
-                                                                ? "Kab. $city"
-                                                                : '$city';
-
-                                                            if (!lksSet
-                                                                .contains(
-                                                                    nameCall)) {
-                                                              lksSet.add(
-                                                                  nameCall);
-                                                            }
-                                                          });
-                                                          setState(() {
-                                                            lksSet = lksSet;
-                                                          });
-                                                        } else {
-                                                          lksSet.clear();
-                                                          setState(() {
-                                                            lksSet = lksSet;
-                                                          });
-                                                        }
-
-                                                        // if (pvsBol
-                                                        //     .contains(false)) {
-                                                        //   pvsBol.forEachIndexed(
-                                                        //       (index, element) {
-                                                        //     setState(() {
-                                                        //       pvsBol[index] =
-                                                        //           true;
-                                                        //     });
-                                                        //   });
-
-                                                        //   a.forEachIndexed(
-                                                        //       (index, element) {
-                                                        //     if (!lksSet.contains(
-                                                        //         element[
-                                                        //             'city_name'])) {
-                                                        //       lksSet.add(element[
-                                                        //           'city_name']);
-                                                        //     }
-                                                        //   });
-                                                        //   lksSet
-                                                        //       .toSet()
-                                                        //       .toList();
-                                                        // } else if (pvsBol
-                                                        //     .contains(true)) {
-                                                        //   pvsBol.forEachIndexed(
-                                                        //       (index, element) {
-                                                        //     setState(() {
-                                                        //       pvsBol[index] =
-                                                        //           false;
-                                                        //     });
-                                                        //     lksSet.clear();
-                                                        //   });
-                                                        // }
-                                                      }
-                                                    : () {},
-                                                child: Container(
-                                                  child: Text(
-                                                    "Select All",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Color.fromRGBO(
-                                                          105,
-                                                          191,
-                                                          233,
-                                                          status == "Offline" ||
-                                                                  status ==
-                                                                      "Both"
-                                                              ? 1
-                                                              : 0.5),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        status == "Offline" || status == "Both"
-                                            ? Padding(
+                                              Padding(
                                                 padding: const EdgeInsets.only(
-                                                    top: 10.0),
+                                                  left: 8.0,
+                                                  top: 12,
+                                                ),
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                   children: [
-                                                    Container(
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color: Colors.grey
-                                                                .withOpacity(
-                                                                    0.2)),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(50),
-                                                      ),
-                                                      height: 30,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width /
-                                                              1.5,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                          left: 12.0,
-                                                        ),
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(
-                                                              MyFlutterApp
-                                                                  .search,
-                                                              size: 20,
-                                                              color:
-                                                                  Colors.grey,
-                                                            ),
-                                                            Container(
-                                                              width: MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width /
-                                                                  1.9,
-                                                              child: TextField(
-                                                                onTap:
-                                                                    _handleSearchLKSStart,
-                                                                controller:
-                                                                    _lksController,
-                                                                onChanged:
-                                                                    searchOperationLKS,
-                                                                decoration:
-                                                                    InputDecoration
-                                                                        .collapsed(
-                                                                  hintText:
-                                                                      "Lokasi",
-                                                                  hintStyle:
-                                                                      TextStyle(
-                                                                          fontSize:
-                                                                              15,
-
-                                                                          // height: 0.5,
-                                                                          color:
-                                                                              Colors.grey),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                    Text(
+                                                      "Lokasi",
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.black
+                                                            .withOpacity(status ==
+                                                                        "Offline" ||
+                                                                    status ==
+                                                                        "Both"
+                                                                ? 1
+                                                                : 0.1),
                                                       ),
                                                     ),
-                                                    MaterialButton(
-                                                      height: 30,
-                                                      minWidth: 64,
-                                                      color: Color.fromRGBO(
-                                                        156,
-                                                        223,
-                                                        255,
-                                                        1,
-                                                      ),
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(55),
-                                                        side: BorderSide(
-                                                          color: Color.fromRGBO(
-                                                            156,
-                                                            223,
-                                                            255,
-                                                            1,
-                                                          ).withOpacity(0.5),
-                                                        ),
-                                                      ),
-                                                      padding: EdgeInsets.zero,
-                                                      onPressed: () {},
-                                                      child: Text(
-                                                        "Search",
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Colors.white,
+                                                    GestureDetector(
+                                                      onTap: status ==
+                                                                  "Offline" ||
+                                                              status == "Both"
+                                                          ? () {
+                                                              List a = kota;
+
+                                                              if (a.length !=
+                                                                  lksSet
+                                                                      .length) {
+                                                                a.forEach(
+                                                                    (element) {
+                                                                  var city =
+                                                                      element[
+                                                                          'city_name'];
+                                                                  var type =
+                                                                      element[
+                                                                          'type'];
+                                                                  var nameCall = type ==
+                                                                          'Kabupaten'
+                                                                      ? "Kab. $city"
+                                                                      : '$city';
+
+                                                                  if (!lksSet
+                                                                      .contains(
+                                                                          nameCall)) {
+                                                                    lksSet.add(
+                                                                        nameCall);
+                                                                  }
+                                                                });
+                                                                setState(() {
+                                                                  lksSet =
+                                                                      lksSet;
+                                                                });
+                                                              } else {
+                                                                lksSet.clear();
+                                                                setState(() {
+                                                                  lksSet =
+                                                                      lksSet;
+                                                                });
+                                                              }
+
+                                                              // if (pvsBol
+                                                              //     .contains(false)) {
+                                                              //   pvsBol.forEachIndexed(
+                                                              //       (index, element) {
+                                                              //     setState(() {
+                                                              //       pvsBol[index] =
+                                                              //           true;
+                                                              //     });
+                                                              //   });
+
+                                                              //   a.forEachIndexed(
+                                                              //       (index, element) {
+                                                              //     if (!lksSet.contains(
+                                                              //         element[
+                                                              //             'city_name'])) {
+                                                              //       lksSet.add(element[
+                                                              //           'city_name']);
+                                                              //     }
+                                                              //   });
+                                                              //   lksSet
+                                                              //       .toSet()
+                                                              //       .toList();
+                                                              // } else if (pvsBol
+                                                              //     .contains(true)) {
+                                                              //   pvsBol.forEachIndexed(
+                                                              //       (index, element) {
+                                                              //     setState(() {
+                                                              //       pvsBol[index] =
+                                                              //           false;
+                                                              //     });
+                                                              //     lksSet.clear();
+                                                              //   });
+                                                              // }
+                                                            }
+                                                          : () {},
+                                                      child: Container(
+                                                        child: Text(
+                                                          "Select All",
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color: Color.fromRGBO(
+                                                                105,
+                                                                191,
+                                                                233,
+                                                                status == "Offline" ||
+                                                                        status ==
+                                                                            "Both"
+                                                                    ? 1
+                                                                    : 0.5),
+                                                          ),
                                                         ),
                                                       ),
                                                     )
                                                   ],
                                                 ),
-                                              )
-                                            : Container(),
-                                        status == "Offline" || status == "Both"
-                                            ? Expanded(
-                                                child: loadingLKS
-                                                    ? Center(
-                                                        child:
-                                                            CircularProgressIndicator(),
-                                                      )
-                                                    : Container(
-                                                        child: lkssearchresult
-                                                                        .length !=
-                                                                    0 ||
-                                                                _lksController
-                                                                    .text
-                                                                    .isNotEmpty
-                                                            ? ListView.builder(
-                                                                itemCount:
-                                                                    lkssearchresult
-                                                                        .length,
-                                                                itemBuilder:
-                                                                    (BuildContext
-                                                                            context,
-                                                                        int
-                                                                            index) {
-                                                                  return lksLayout(
-                                                                    lkssearchresult[
-                                                                        index],
-                                                                    index,
-                                                                    true,
-                                                                  );
-                                                                })
-                                                            : ListView.builder(
-                                                                itemCount:
-                                                                    kota.length,
-                                                                itemBuilder:
-                                                                    (BuildContext
-                                                                            context,
-                                                                        int index) {
-                                                                  //   print(index);
-                                                                  return lksLayout(
-                                                                    kota[index],
-                                                                    index,
-                                                                    false,
-                                                                  );
-                                                                }),
+                                              ),
+                                              status == "Offline" ||
+                                                      status == "Both"
+                                                  ? Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 10.0),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .grey
+                                                                      .withOpacity(
+                                                                          0.2)),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                            ),
+                                                            height: 30,
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width /
+                                                                1.5,
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                left: 12.0,
+                                                              ),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(
+                                                                    MyFlutterApp
+                                                                        .search,
+                                                                    size: 20,
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                  Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width /
+                                                                        1.9,
+                                                                    child:
+                                                                        TextField(
+                                                                      onTap:
+                                                                          _handleSearchLKSStart,
+                                                                      controller:
+                                                                          _lksController,
+                                                                      onChanged:
+                                                                          searchOperationLKS,
+                                                                      decoration:
+                                                                          InputDecoration
+                                                                              .collapsed(
+                                                                        hintText:
+                                                                            "Lokasi",
+                                                                        hintStyle: TextStyle(
+                                                                            fontSize: 15,
+
+                                                                            // height: 0.5,
+                                                                            color: Colors.grey),
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          MaterialButton(
+                                                            height: 30,
+                                                            minWidth: 64,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                              156,
+                                                              223,
+                                                              255,
+                                                              1,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          55),
+                                                              side: BorderSide(
+                                                                color: Color
+                                                                    .fromRGBO(
+                                                                  156,
+                                                                  223,
+                                                                  255,
+                                                                  1,
+                                                                ).withOpacity(
+                                                                    0.5),
+                                                              ),
+                                                            ),
+                                                            padding:
+                                                                EdgeInsets.zero,
+                                                            onPressed: () {},
+                                                            child: Text(
+                                                              "Search",
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                            ),
+                                                          )
+                                                        ],
                                                       ),
-                                              )
-                                            : Container(),
+                                                    )
+                                                  : Container(),
+                                              status == "Offline" ||
+                                                      status == "Both"
+                                                  ? Expanded(
+                                                      child: loadingLKS
+                                                          ? Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            )
+                                                          : Container(
+                                                              child: lkssearchresult
+                                                                              .length !=
+                                                                          0 ||
+                                                                      _lksController
+                                                                          .text
+                                                                          .isNotEmpty
+                                                                  ? ListView
+                                                                      .builder(
+                                                                          itemCount: lkssearchresult
+                                                                              .length,
+                                                                          itemBuilder: (BuildContext context,
+                                                                              int
+                                                                                  index) {
+                                                                            return lksLayout(
+                                                                              lkssearchresult[index],
+                                                                              index,
+                                                                              true,
+                                                                            );
+                                                                          })
+                                                                  : ListView
+                                                                      .builder(
+                                                                          itemCount: kota
+                                                                              .length,
+                                                                          itemBuilder:
+                                                                              (BuildContext context, int index) {
+                                                                            //   print(index);
+                                                                            return lksLayout(
+                                                                              kota[index],
+                                                                              index,
+                                                                              false,
+                                                                            );
+                                                                          }),
+                                                            ),
+                                                    )
+                                                  : Container(),
+                                            ],
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),

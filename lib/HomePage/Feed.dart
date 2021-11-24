@@ -1693,8 +1693,7 @@ class _FeedPageState extends State<FeedPage> {
     String waktu = index['waktu'].toString();
     String jenispembayaran = index['jenis_pembayaran'].toString();
     String slug = index['slug'].toString();
-    print(MediaQuery.of(context).size.width / 16);
-    print(MediaQuery.of(context).size.height / 9);
+
     return Padding(
       padding: EdgeInsets.only(
         top: 2,
